@@ -58,18 +58,20 @@ void Pi0XMC::ProcessEvent()
 
   FillThetaMC(theta_MC, thetaCM_MC, kTRUE);
 
-  // Time diff (tagger - pi0)
-  FillTime(*GetNeutralPions(),0,time);
-  FillTime(*GetNeutralPions(), time_all);
-  FillTimeCut(*GetNeutralPions(),0,time_cut);
-
-  // FPD hits
-  FillFPD(*GetNeutralPions(), 0, FPD);
-  FillFPD(*GetNeutralPions(), FPD_all);
-
-  // Angular distributions
-  FillTheta(*GetNeutralPions(), 0, theta, thetaCM, kTRUE);
-  FillTheta(*GetNeutralPions(), theta_all, thetaCM_all, kTRUE);
+  if (GetNeutralPions()->GetNParticles()==1) {
+    // Time diff (tagger - pi0)
+    FillTime(*GetNeutralPions(),0,time);
+    FillTime(*GetNeutralPions(), time_all);
+    FillTimeCut(*GetNeutralPions(),0,time_cut);
+    
+    // FPD hits
+    FillFPD(*GetNeutralPions(), 0, FPD);
+    FillFPD(*GetNeutralPions(), FPD_all);
+    
+    // Angular distributions
+    FillTheta(*GetNeutralPions(), 0, theta, thetaCM, kTRUE);
+    FillTheta(*GetNeutralPions(), theta_all, thetaCM_all, kTRUE);
+  }
 
   evtNum++;
 }  
@@ -123,6 +125,8 @@ void Pi0XMC::FillTheta(const GTreeParticle& tree, GH1* gHist, GH1* gHistCM, Bool
 
 void Pi0XMC::FillTheta(const GTreeParticle& tree, Int_t particle_index, GH1* gHist, GH1* gHistCM, Bool_t TaggerBinning)
 {
+  if (GetTagger()->GetNTagged()==0) return;
+
   //  for (Int_t j = 0; j < GetTagger()->GetNTagged(); j++)
   for (Int_t j = 0; j < 1; j++)
     {
@@ -145,6 +149,7 @@ void Pi0XMC::FillTheta(const GTreeParticle& tree, Int_t particle_index, GH1* gHi
 	gHistCM->Fill(theta_cm, time);
       }
     }
+  
 }
 
 

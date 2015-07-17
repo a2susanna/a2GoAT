@@ -143,6 +143,39 @@ add_executable(TaggEff
    )
 target_link_libraries(TaggEff goatbase ghist ${LIBS} ${ROOT_LIBRARIES})
 
+add_executable(pi0x
+   ${GOAT_BASE}
+   ${GOAT_GHIST}
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/Pi0X.h
+   src/Pi0X.cc
+   src/mypi0_main.cc
+   )
+target_link_libraries(pi0x ${ROOT_LIBRARIES})
+
+add_executable(totincl
+   ${GOAT_BASE}
+   ${GOAT_GHIST}
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/TotalInclusive.h
+   src/TotalInclusive.cc
+   src/myti_main.cc
+   )
+target_link_libraries(totincl ${ROOT_LIBRARIES})
+
+add_executable(pi0xmc
+   ${GOAT_BASE}
+   ${GOAT_GHIST}
+   inc/PPhysics.h
+   src/PPhysics.cc
+   inc/Pi0XMC.h
+   src/Pi0XMC.cc
+   src/mymcpi0_main.cc
+   )
+target_link_libraries(pi0xmc ${ROOT_LIBRARIES})
+
 add_executable(pipnmc
    ${GOAT_BASE}
    ${GOAT_GHIST}
