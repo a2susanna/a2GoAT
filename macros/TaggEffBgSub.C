@@ -54,6 +54,38 @@ void TaggEffBgSub(TString sBeam, TString sBkg1, TString sBkg2="", Bool_t bFreeSc
   hEffSingles->Divide(hEffAccScal);
   hEffDoubles->Divide(hEffAccScal);
 
+  ofstream fout;
+  TString foutname = sBeam;
+  foutname.ReplaceAll("GoAT_", "");
+  foutname.ReplaceAll("TaggEff_", "TaggEffUncorr_");
+  foutname.ReplaceAll(".root", ".dat");
+  fout.open(foutname, ios::ate);
+  Int_t nbins = hEffAllHits->GetXaxis()->GetNbins();
+  for (int jj=1; jj<=nbins; jj++)
+    fout << jj << "\t" << hEffAllHits->GetBinContent(jj) << "\t" << hEffAllHits->GetBinError(jj) << endl;
+  fout.close();
+
+  Double_t bins[500], rerr[500]={0.};
+  for (int kk=0; kk<nbins; kk++) {
+    bins[kk] = kk;
+    if (hEffAllHits->GetBinContent(kk)>0)
+      rerr[kk] = hEffAllHits->GetBinError(kk)/hEffAllHits->GetBinContent(kk);
+  }
+  TCanvas *c = new TCanvas("c","c", 800, 500);
+  c->cd();
+  c->SetGridy();
+  TGraph *relerr = new TGraph(nbins, bins, rerr);
+  relerr->SetMarkerStyle(20);
+  relerr->SetMarkerSize(0.8);
+  relerr->GetXaxis()->SetTitle("Channel number");
+  relerr->GetYaxis()->SetTitle("Relative error");
+  relerr->GetYaxis()->SetRangeUser(-0.05, 0.3);
+  relerr->SetName("RelErr");
+  relerr->SetTitle("");
+  relerr->Draw("AP");
+  relerr->Write();
+  c->Write();
+
   Double_t dMean = 0;
   Int_t iMean = 0;
   for(Int_t i=0; i<hEffAllHits->GetNbinsX(); i++){

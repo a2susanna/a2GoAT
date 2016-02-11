@@ -2,50 +2,62 @@
 
 Pi0X::Pi0X()
 { 
-  helicity          = new GH1("helicity",          "helicity",    2, 0, 2);
-  helicityZE        = new GH1("helicityZE",        "helicityZE",  2, 0, 2);
-  helerrors         = new GH1("helicityerr",       "helicityerr", 15, 0, 15);
-  errcode           = new GH1("errcode",           "errcode",     11, 0, 11);
+  helicity           = new GH1("helicity",          "helicity",    2, 0, 2);
+  helicityZE         = new GH1("helicityZE",        "helicityZE",  2, 0, 2);
+  helerrors          = new GH1("helicityerr",       "helicityerr", 15, 0, 15);
+  errcode            = new GH1("errcode",           "errcode",     11, 0, 11);
 
-  time 	            = new GH1("time",              "time",       1400, -700, 700);
-  time_all          = new GH1("time_all",          "time_all",   1400, -700, 700);
-  time_cut          = new GH1("time_cut",          "time_cut",   1400, -700, 700);
+  time 	             = new GH1("time",              "time",       1400, -700, 700);
+  time_all           = new GH1("time_all",          "time_all",   1400, -700, 700);
+  time_cut           = new GH1("time_cut",          "time_cut",   1400, -700, 700);
 
-  egamma            = new GH1("egamma",            "GOAT - E_{#gamma}",               1000, 0, 1600);
-  egamma_all        = new GH1("egamma_all",        "GoAT - E_{#gamma} all tracks",    1000, 0, 1600);
+  egamma             = new GH1("egamma",            "GOAT - E_{#gamma}",               1000, 0, 1600);
+  egamma_all         = new GH1("egamma_all",        "GoAT - E_{#gamma} all tracks",    1000, 0, 1600);
 
-  FPD               = new GH1("FPD",               "GoAT - FPD hits (p-r)",                            352, 0, 352);
-  FPD_hel0          = new GH1("FPD_hel0",          "GoAT - FPD hits (p-r) helicity 0",                 352, 0, 352);
-  FPD_CB_hel0       = new GH1("FPD_CB_hel0",       "GoAT - FPD hits (p-r) helicity 0, CB trigger",     352, 0, 352);
-  FPD_TAPS_hel0     = new GH1("FPD_TAPS_hel0",     "GoAT - FPD hits (p-r) helicity 0, TAPS trigger",   352, 0, 352);
-  FPD_hel1          = new GH1("FPD_hel1",          "GoAT - FPD hits (p-r) helicity 1",                 352, 0, 352);
-  FPD_CB_hel1       = new GH1("FPD_CB_hel1",       "GoAT - FPD hits (p-r) helicity 1, CB trigger",     352, 0, 352);
-  FPD_TAPS_hel1     = new GH1("FPD_TAPS_hel1",     "GoAT - FPD hits (p-r) helicity 1, TAPS trigger",   352, 0, 352);
-  FPD_all           = new GH1("FPD_all",           "GoAT - FPD hits all tracks (p-r)",                 352, 0, 352);
-  FPD_all_hel0      = new GH1("FPD_all_hel0",      "GoAT - FPD hits all tracks (p-r) hel 0",           352, 0, 352);
-  FPD_all_hel1      = new GH1("FPD_all_hel1",      "GoAT - FPD hits all tracks (p-r) hel 1",           352, 0, 352);
+  FPD                = new GH1("FPD",                "GoAT - FPD hits (p-r)",                            352, 0, 352);
+  FPD_hel0           = new GH1("FPD_hel0",           "GoAT - FPD hits (p-r) helicity 0",                 352, 0, 352);
+  FPD_CB_hel0        = new GH1("FPD_CB_hel0",        "GoAT - FPD hits (p-r) helicity 0, CB trigger",     352, 0, 352);
+  FPD_TAPS_hel0      = new GH1("FPD_TAPS_hel0",      "GoAT - FPD hits (p-r) helicity 0, TAPS trigger",   352, 0, 352);
+  FPD_hel1           = new GH1("FPD_hel1",           "GoAT - FPD hits (p-r) helicity 1",                 352, 0, 352);
+  FPD_CB_hel1        = new GH1("FPD_CB_hel1",        "GoAT - FPD hits (p-r) helicity 1, CB trigger",     352, 0, 352);
+  FPD_TAPS_hel1      = new GH1("FPD_TAPS_hel1",      "GoAT - FPD hits (p-r) helicity 1, TAPS trigger",   352, 0, 352);
+  CFPD               = new GH1("CFPD",               "GoAT + cond - FPD hits (p-r)",                          352, 0, 352);
+  CFPD_hel0          = new GH1("CFPD_hel0",          "GoAT + cond - FPD hits (p-r) helicity 0",               352, 0, 352);
+  CFPD_CB_hel0       = new GH1("CFPD_CB_hel0",       "GoAT + cond - FPD hits (p-r) helicity 0, CB trigger",   352, 0, 352);
+  CFPD_TAPS_hel0     = new GH1("CFPD_TAPS_hel0",     "GoAT + cond - FPD hits (p-r) helicity 0, TAPS trigger", 352, 0, 352);
+  CFPD_hel1          = new GH1("CFPD_hel1",          "GoAT + cond - FPD hits (p-r) helicity 1",               352, 0, 352);
+  CFPD_CB_hel1       = new GH1("CFPD_CB_hel1",       "GoAT + cond - FPD hits (p-r) helicity 1, CB trigger",   352, 0, 352);
+  CFPD_TAPS_hel1     = new GH1("CFPD_TAPS_hel1",     "GoAT + cond - FPD hits (p-r) helicity 1, TAPS trigger", 352, 0, 352);
+  C2FPD_hel0         = new GH1("C2FPD_hel0",         "GoAT + !cond - FPD hits (p-r) helicity 0",              352, 0, 352);
+  C2FPD_CB_hel0      = new GH1("C2FPD_CB_hel0",      "GoAT + !cond - FPD hits (p-r) helicity 0, CB trigger",  352, 0, 352);
+  C2FPD_TAPS_hel0    = new GH1("C2FPD_TAPS_hel0",    "GoAT + !cond - FPD hits (p-r) helicity 0, TAPS trigger",352, 0, 352);
+  C2FPD_hel1         = new GH1("C2FPD_hel1",         "GoAT + !cond - FPD hits (p-r) helicity 1",              352, 0, 352);
+  C2FPD_CB_hel1      = new GH1("C2FPD_CB_hel1",      "GoAT + !cond - FPD hits (p-r) helicity 1, CB trigger",  352, 0, 352);
+  C2FPD_TAPS_hel1    = new GH1("C2FPD_TAPS_hel1",    "GoAT + !cond - FPD hits (p-r) helicity 1, TAPS trigger",352, 0, 352);
+  FPD_all            = new GH1("FPD_all",            "GoAT - FPD hits all tracks (p-r)",                 352, 0, 352);
+  FPD_all_hel0       = new GH1("FPD_all_hel0",       "GoAT - FPD hits all tracks (p-r) hel 0",           352, 0, 352);
+  FPD_all_hel1       = new GH1("FPD_all_hel1",       "GoAT - FPD hits all tracks (p-r) hel 1",           352, 0, 352);
 
-  phi               = new GH1("phi",               "GOAT - #phi distribution",                         360, 0, 360);
-  thetaphi          = new GH2("thetaphi",          "GOAT - #theta vs #phi prompt",                     180, 0, 180, 360, 0, 360);
-  phi_all           = new GH1("phi_all",           "GOAT - #phi distribution all tracks",              360, 0, 360);
-  thetaphi_all      = new GH2("thetaphi_all",      "GOAT - #theta vs #phi prompt all tracks",          180, 0, 180, 360, 0, 360);
-  theta             = new GH1("theta",             "GOAT - #theta distribution",                       180, 0, 180);
-  theta_all         = new GH1("theta_all",         "GOAT - #theta distribution all tracks",            180, 0, 180);
-  theta_hel0        = new GH1("theta_hel0",        "GOAT - #theta distribution - hel0",                180, 0, 180);
-  theta_hel1        = new GH1("theta_hel1",        "GOAT - #theta distribution - hel1",                180, 0, 180);
-  theta_hel0CM      = new GH1("theta_hel0CM",      "GOAT - #theta CM distribution - hel0",             180, 0, 180);
-  theta_hel1CM      = new GH1("theta_hel1CM",      "GOAT - #theta CM distribution - hel1",             180, 0, 180);
-  thetaCB_hel0      = new GH1("thetaCB_hel0",      "GOAT - #theta distribution - hel0, CB trigg",      180, 0, 180);
-  thetaCB_hel1      = new GH1("thetaCB_hel1",      "GOAT - #theta distribution - hel1, CB trigg",      180, 0, 180);
-  thetaCB_hel0CM    = new GH1("thetaCB_hel0CM",    "GOAT - #theta CM distribution - hel0, CB trigg",   180, 0, 180);
-  thetaCB_hel1CM    = new GH1("thetaCB_hel1CM",    "GOAT - #theta CM distribution - hel1, CB trigg",   180, 0, 180);
-  thetaTAPS_hel0    = new GH1("thetaTAPS_hel0",    "GOAT - #theta distribution - hel0, TAPS trigg",    180, 0, 180);
-  thetaTAPS_hel1    = new GH1("thetaTAPS_hel1",    "GOAT - #theta distribution - hel1, TAPS trigg",    180, 0, 180);
-  thetaTAPS_hel0CM  = new GH1("thetaTAPS_hel0CM",  "GOAT - #theta CM distribution - hel0, TAPS trigg", 180, 0, 180);
-  thetaTAPS_hel1CM  = new GH1("thetaTAPS_hel1CM",  "GOAT - #theta CM distribution - hel1, TAPS trigg", 180, 0, 180);
-  theta_all_hel0    = new GH1("theta_all_hel0",    "GOAT - #theta distribution all tracks - hel0",     180, 0, 180);
-  theta_all_hel1    = new GH1("theta_all_hel1",    "GOAT - #theta distribution all tracks - hel1",     180, 0, 180);
-
+  phi                = new GH1("phi",                "GOAT - #phi distribution",                         360, 0, 360);
+  thetaphi           = new GH2("thetaphi",           "GOAT - #theta vs #phi prompt",                     180, 0, 180, 360, 0, 360);
+  phi_all            = new GH1("phi_all",            "GOAT - #phi distribution all tracks",              360, 0, 360);
+  thetaphi_all       = new GH2("thetaphi_all",       "GOAT - #theta vs #phi prompt all tracks",          180, 0, 180, 360, 0, 360);
+  theta              = new GH1("theta",              "GOAT - #theta distribution",                       180, 0, 180);
+  theta_all          = new GH1("theta_all",          "GOAT - #theta distribution all tracks",            180, 0, 180);
+  theta_hel0         = new GH1("theta_hel0",         "GOAT - #theta distribution - hel0",                180, 0, 180);
+  theta_hel1         = new GH1("theta_hel1",         "GOAT - #theta distribution - hel1",                180, 0, 180);
+  theta_hel0CM       = new GH1("theta_hel0CM",       "GOAT - #theta CM distribution - hel0",             180, 0, 180);
+  theta_hel1CM       = new GH1("theta_hel1CM",       "GOAT - #theta CM distribution - hel1",             180, 0, 180);
+  thetaCB_hel0       = new GH1("thetaCB_hel0",       "GOAT - #theta distribution - hel0, CB trigg",      180, 0, 180);
+  thetaCB_hel1       = new GH1("thetaCB_hel1",       "GOAT - #theta distribution - hel1, CB trigg",      180, 0, 180);
+  thetaCB_hel0CM     = new GH1("thetaCB_hel0CM",     "GOAT - #theta CM distribution - hel0, CB trigg",   180, 0, 180);
+  thetaCB_hel1CM     = new GH1("thetaCB_hel1CM",     "GOAT - #theta CM distribution - hel1, CB trigg",   180, 0, 180);
+  thetaTAPS_hel0     = new GH1("thetaTAPS_hel0",     "GOAT - #theta distribution - hel0, TAPS trigg",    180, 0, 180);
+  thetaTAPS_hel1     = new GH1("thetaTAPS_hel1",     "GOAT - #theta distribution - hel1, TAPS trigg",    180, 0, 180);
+  thetaTAPS_hel0CM   = new GH1("thetaTAPS_hel0CM",   "GOAT - #theta CM distribution - hel0, TAPS trigg", 180, 0, 180);
+  thetaTAPS_hel1CM   = new GH1("thetaTAPS_hel1CM",   "GOAT - #theta CM distribution - hel1, TAPS trigg", 180, 0, 180);
+  theta_all_hel0     = new GH1("theta_all_hel0",     "GOAT - #theta distribution all tracks - hel0",     180, 0, 180);
+  theta_all_hel1     = new GH1("theta_all_hel1",     "GOAT - #theta distribution all tracks - hel1",     180, 0, 180);
   Cphi               = new GH1("Cphi",               "GOAT + cond - #phi distribution",                         360, 0, 360);
   Cthetaphi          = new GH2("Cthetaphi",          "GOAT + cond - #theta vs #phi prompt",                     180, 0, 180, 360, 0, 360);
   Cphi_all           = new GH1("Cphi_all",           "GOAT + cond - #phi distribution all tracks",              360, 0, 360);
@@ -66,18 +78,28 @@ Pi0X::Pi0X()
   CthetaTAPS_hel1CM  = new GH1("CthetaTAPS_hel1CM",  "GOAT + cond - #theta CM distribution - hel1, TAPS trigg", 180, 0, 180);
   Ctheta_all_hel0    = new GH1("Ctheta_all_hel0",    "GOAT + cond - #theta distribution all tracks - hel0",     180, 0, 180);
   Ctheta_all_hel1    = new GH1("Ctheta_all_hel1",    "GOAT + cond - #theta distribution all tracks - hel1",     180, 0, 180);
+  C2theta_hel0       = new GH1("C2theta_hel0",       "GOAT + !cond - #theta distribution - hel0",               180, 0, 180);
+  C2theta_hel1       = new GH1("C2theta_hel1",       "GOAT + !cond - #theta distribution - hel1",               180, 0, 180);
+  C2theta_hel0CM     = new GH1("C2theta_hel0CM",     "GOAT + !cond - #theta CM distribution - hel0",            180, 0, 180);
+  C2theta_hel1CM     = new GH1("C2theta_hel1CM",     "GOAT + !cond - #theta CM distribution - hel1",            180, 0, 180);
+  C2thetaCB_hel0     = new GH1("C2thetaCB_hel0",     "GOAT + !cond - #theta distribution - hel0, CB trigg",     180, 0, 180);
+  C2thetaCB_hel1     = new GH1("C2thetaCB_hel1",     "GOAT + !cond - #theta distribution - hel1, CB trigg",     180, 0, 180);
+  C2thetaCB_hel0CM   = new GH1("C2thetaCB_hel0CM",   "GOAT + !cond - #theta CM distribution - hel0, CB trigg",  180, 0, 180);
+  C2thetaCB_hel1CM   = new GH1("C2thetaCB_hel1CM",   "GOAT + !cond - #theta CM distribution - hel1, CB trigg",  180, 0, 180);
+  C2thetaTAPS_hel0   = new GH1("C2thetaTAPS_hel0",   "GOAT + !cond - #theta distribution - hel0, TAPS trigg",   180, 0, 180);
+  C2thetaTAPS_hel1   = new GH1("C2thetaTAPS_hel1",   "GOAT + !cond - #theta distribution - hel1, TAPS trigg",   180, 0, 180);
+  C2thetaTAPS_hel0CM = new GH1("C2thetaTAPS_hel0CM", "GOAT + !cond - #theta CM distribution - hel0, TAPS trigg",180, 0, 180);
+  C2thetaTAPS_hel1CM = new GH1("C2thetaTAPS_hel1CM", "GOAT + !cond - #theta CM distribution - hel1, TAPS trigg",180, 0, 180);
 
-  IM 	  	  = new GH1("IM", 	       "GoAT - #pi^{0}#rightarrowX;m_{#pi^{0}} (MeV)",                    100, 110, 160);
-  IM_gg   	  = new GH1("IM_gg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{#pi^{0}} (MeV)",        100, 110, 160);
-  IM_ggg 	  = new GH1("IM_ggg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{#pi^{0}} (MeV)", 100, 110, 160);
-  CIM_gg   	  = new GH1("CIM_gg", 	       "GoAT + cond - #pi^{0}#rightarrow#gamma+#gamma;m_{#pi^{0}} (MeV)", 100, 110, 160);
+  IM   	             = new GH1("IM", 	             "GoAT - IM_{#pi^{0}} (MeV)",                               200, 60, 210);
+  CIM  	             = new GH1("CIM", 	             "GoAT + cond - IM_{#pi^{0}} (MeV)",                        200, 60, 210);
+  C2IM  	     = new GH1("C2IM", 	             "GoAT + !cond - IM_{#pi^{0}} (MeV)",                       200, 60, 210);
 
-  MM 	  	  = new GH1("MM", 	       "GoAT - #pi^{0}#rightarrowX;m_{miss} (MeV)",                    400, 600, 2000);
-  MM_gg 	  = new GH1("MM_gg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{miss} (MeV)",        400, 600, 2000);
-  MM_ggg 	  = new GH1("MM_ggg", 	       "GoAT - #pi^{0}#rightarrow#gamma+#gamma+#gamma;m_{miss} (MeV)", 400, 600, 2000);
-  CMM_gg 	  = new GH1("CMM_gg", 	       "GoAT + cond - #pi^{0}#rightarrow#gamma+#gamma;m_{miss} (MeV)", 400, 600, 2000);
+  MM 	  	     = new GH1("MM", 	             "GoAT - #pi^{0}#rightarrowX;m_{miss} (MeV)",                    400, 600, 2000);
+  MM 	             = new GH1("MM", 	             "GoAT - #pi^{0}#rightarrow#gamma+#gamma;m_{miss} (MeV)",        400, 600, 2000);
+  CMM         	     = new GH1("CMM",   	     "GoAT + cond - #pi^{0}#rightarrow#gamma+#gamma;m_{miss} (MeV)", 400, 600, 2000);
 
-  TaggerAccScal   = new TH1D("TaggerAccScal",   "TaggerAccScal", 352, 0, 352);
+  //  TaggerAccScal   = new TH1D("TaggerAccScal",   "TaggerAccScal", 352, 0, 352);
 
 }
 
@@ -92,8 +114,9 @@ Bool_t Pi0X::Init()
 
   if(!InitBackgroundCuts()) return kFALSE;
   if(!InitTargetMass()) return kFALSE;
-  if(!InitTaggerChannelCuts()) return kFALSE;
-  if(!InitTaggerScalers()) return kFALSE;
+  //   if(!InitTaggerChannelCuts()) return kFALSE;
+  //   if(!InitTaggerScalers()) return kFALSE;
+  if(!PPhysics::Init()) return kFALSE;
   cout << "--------------------------------------------------" << endl;
 
   evtNum = 0;
@@ -134,32 +157,31 @@ void Pi0X::ProcessEvent()
   FillFPD(*GetNeutralPions(), 0, FPD_hel0, FPD_CB_hel0, FPD_TAPS_hel0, FPD_hel1, FPD_CB_hel1, FPD_TAPS_hel1);
   FillFPD(*GetNeutralPions(), FPD_all_hel0, FPD_all_hel1);
 
-  // Any decays
-  FillMass(*GetNeutralPions(),0,IM);
-  FillMissingMass(*GetNeutralPions(),0,MM, kTRUE);
+  // no conditions on # photons
+  {  
+    // Angular distributions
+    FillAngularDist(*GetNeutralPions(), 0, phi, thetaphi);
+    FillAngularDist(*GetNeutralPions(), phi_all, thetaphi_all);
+    FillTheta(*GetNeutralPions(), 0, theta, kTRUE);
+    FillTheta(*GetNeutralPions(), 0, 
+	      theta_hel0, thetaCB_hel0, thetaTAPS_hel0, theta_hel0CM, thetaCB_hel0CM, thetaTAPS_hel0CM,
+	      theta_hel1, thetaCB_hel1, thetaTAPS_hel1, theta_hel1CM, thetaCB_hel1CM, thetaTAPS_hel1CM,
+	      kTRUE);
+    FillTheta(*GetNeutralPions(), theta_all, kTRUE);
+    FillTheta(*GetNeutralPions(), theta_all_hel0, theta_all_hel1, kTRUE);
 
-  // 2 photon decay
-  //  if ((GetNeutralPions()->GetNSubPhotons(0)==2) && (GetNeutralPions()->GetNSubRootinos(0) == 0)) 
-  //  if ((GetNeutralPions()->GetNSubPhotons(0)==2))
-    {
-      // Angular distributions
-      FillAngularDist(*GetNeutralPions(), 0, phi, thetaphi);
-      FillAngularDist(*GetNeutralPions(), phi_all, thetaphi_all);
-      FillTheta(*GetNeutralPions(), 0, theta, kTRUE);
-      //    FillTheta(*GetNeutralPions(), 0, theta_hel0, thetaCB_hel0, thetaTAPS_hel0, theta_hel1, thetaCB_hel1, thetaTAPS_hel1, kTRUE);
-      FillTheta(*GetNeutralPions(), 0, 
-		theta_hel0, thetaCB_hel0, thetaTAPS_hel0, theta_hel0CM, thetaCB_hel0CM, thetaTAPS_hel0CM,
-		theta_hel1, thetaCB_hel1, thetaTAPS_hel1, theta_hel1CM, thetaCB_hel1CM, thetaTAPS_hel1CM,
-		kTRUE);
-      FillTheta(*GetNeutralPions(), theta_all, kTRUE);
-      FillTheta(*GetNeutralPions(), theta_all_hel0, theta_all_hel1, kTRUE);
-      
-      // mass and missing mass
-      FillMass(*GetNeutralPions(),0,IM_gg);
-      FillMissingMass(*GetNeutralPions(),0,MM_gg, kTRUE);
-    }
+    // mass and missing mass
+    FillMass(*GetNeutralPions(), 0, IM);
+    FillMissingMass(*GetNeutralPions(), 0, MM, kTRUE);
+  }
+
+
   if (GetNeutralPions()->GetNSubPhotons(0) == GetNeutralPions()->GetNSubParticles(0) )
     {
+      // FPD hits
+      FillFPD(*GetNeutralPions(), 0, CFPD);
+      FillFPD(*GetNeutralPions(), 0, CFPD_hel0, CFPD_CB_hel0, CFPD_TAPS_hel0, CFPD_hel1, CFPD_CB_hel1, CFPD_TAPS_hel1);
+
       // Angular distributions
       FillAngularDist(*GetNeutralPions(), 0, Cphi, Cthetaphi);
       FillAngularDist(*GetNeutralPions(), Cphi_all, Cthetaphi_all);
@@ -172,23 +194,34 @@ void Pi0X::ProcessEvent()
       FillTheta(*GetNeutralPions(), Ctheta_all_hel0, Ctheta_all_hel1, kTRUE);
       
       // mass and missing mass
-      FillMass(*GetNeutralPions(),0,CIM_gg);
-      FillMissingMass(*GetNeutralPions(),0,CMM_gg, kTRUE);
+      FillMass(*GetNeutralPions(), 0, CIM);
+      FillMissingMass(*GetNeutralPions(), 0, CMM, kTRUE);
     }
-  
-//   // 3 photon decay
-//   else if ((GetNeutralPions()->GetNSubPhotons(0) == 3) && (GetNeutralPions()->GetNSubRootinos(0) == 0)){
-//     FillMass(*GetNeutralPions(),0,IM_ggg);
-//     FillMissingMass(*GetNeutralPions(),0,MM_ggg, kTRUE);
-//   }
 
+
+  if (GetNeutralPions()->GetNSubPhotons(0) != GetNeutralPions()->GetNSubParticles(0) )
+    {
+      // FPD hits
+      FillFPD(*GetNeutralPions(), 0, C2FPD_hel0, C2FPD_CB_hel0, C2FPD_TAPS_hel0, C2FPD_hel1, C2FPD_CB_hel1, C2FPD_TAPS_hel1);
+   
+      // Angular distributions
+      FillTheta(*GetNeutralPions(), 0, 
+		C2theta_hel0, C2thetaCB_hel0, C2thetaTAPS_hel0, C2theta_hel0CM, C2thetaCB_hel0CM, C2thetaTAPS_hel0CM,
+		C2theta_hel1, C2thetaCB_hel1, C2thetaTAPS_hel1, C2theta_hel1CM, C2thetaCB_hel1CM, C2thetaTAPS_hel1CM,
+		kTRUE);
+
+      // mass
+      FillMass(*GetNeutralPions(), 0, C2IM);
+    }
   evtNum++;
+
 }  
 
 void	Pi0X::ProcessScalerRead()
 {
   // Fill Tagger Scalers
-  FillScalers(GetTC_scaler_min(),GetTC_scaler_max(),TaggerAccScal);
+  //  FillScalers(GetTC_scaler_min(),GetTC_scaler_max(),TaggerAccScal);
+  PPhysics::ProcessScalerRead();
 }
 
 Bool_t	Pi0X::Write()

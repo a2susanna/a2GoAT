@@ -4,14 +4,14 @@
 
 PPhysics::PPhysics() 
 {
-	TC_cut_min = 0;
-	TC_cut_max = 352;
-    TC_scaler_min = 400;
-    TC_scaler_max = 751;
-    LT_scaler_clock = 0;
-    LT_scaler_inhib = 1;
-    scalerHists = new TObjArray();
-    nScalerHists = 0;
+  TC_cut_min = 0;
+  TC_cut_max = 352;
+  //     TC_scaler_min = 400;
+  //     TC_scaler_max = 751;
+  LT_scaler_clock = 0;
+  LT_scaler_inhib = 1;
+  scalerHists = new TObjArray();
+  nScalerHists = 0;
 }
 
 PPhysics::~PPhysics()
@@ -67,7 +67,7 @@ void PPhysics::FillScalers(Int_t low_scaler_number, Int_t high_scaler_number, TH
     for (Int_t i = low_scaler_number; i <= high_scaler_number; i++)
 	{
         Int_t bin = (i - low_scaler_number + first_bin);
-        hist_current_SR->SetBinContent(bin,GetScalers()->GetScaler(i));
+	hist_current_SR->SetBinContent(bin,GetScalers()->GetScaler(i));
 	}
 
 	// Add to accumulated
@@ -519,54 +519,89 @@ Bool_t 	PPhysics::InitTargetMass()
 
 Bool_t 	PPhysics::InitTaggerChannelCuts()
 {
-	Double_t tc1, tc2;
-	string config = ReadConfig("Tagger-Channel-Cut");
-	if(sscanf( config.c_str(), "%lf %lf\n", &tc1, &tc2) == 2)
+  Double_t tc1, tc2;
+  string config = ReadConfig("Tagger-Channel-Cut");
+  cout << config << endl;
+  if(sscanf( config.c_str(), "%lf %lf\n", &tc1, &tc2) == 2)
+    {
+      if ((tc1 < 0) || (tc1 > 352))
 	{
-		if ((tc1 < 0) || (tc1 > 352))
-		{
-           cout << "Invalid Tagger channel cut: " << tc1 << endl << endl;
-		   return kFALSE;
-		}
-		else if ((tc2 < 0) || (tc2 > 352))
-		{
-           cout << "Invalid Tagger channel cut: " << tc2 << endl << endl;
-		   return kFALSE;
-		}
-		
-        cout << "Setting cut on Tagger channels: " << tc1 << " to " << tc2 << endl << endl;
-		SetTC_cut(tc1,tc2);
+	  cout << "Invalid Tagger channel cut: " << tc1 << endl << endl;
+	  return kFALSE;
 	}
-	else if(strcmp(config.c_str(), "nokey") != 0)
+      else if ((tc2 < 0) || (tc2 > 352))
 	{
-        cout << "Tagger channel cut not set correctly" << endl << endl;
-		return kFALSE;
+	  cout << "Invalid Tagger channel cut: " << tc2 << endl << endl;
+	  return kFALSE;
 	}
-
-	return kTRUE;
+      
+      cout << "Setting cut on Tagger channels: " << tc1 << " to " << tc2 << endl << endl;
+      SetTC_cut(tc1,tc2);
+    }
+  else if(strcmp(config.c_str(), "nokey") != 0) // shouldn't it be ==?????
+    {
+      cout << "Tagger channel cut not set correctly" << endl << endl;
+      return kFALSE;
+    }
+  
+  return kTRUE;
 
 }
 
 Bool_t 	PPhysics::InitTaggerScalers()
 {
-	Int_t sc1, sc2;
-	string config = ReadConfig("Tagger-Scalers");
-	if(sscanf( config.c_str(), "%d %d\n", &sc1, &sc2) == 2)
-	{
-		cout << "Setting Tagger scaler channels: " << sc1 << " to " << sc2 << endl;
-        SetTC_scalers(sc1,sc2);
-        AddScalerHist("TaggerAccScal",sc1,sc2);
-        cout << endl;
-    }
-	else if(strcmp(config.c_str(), "nokey") != 0)
-	{
-        cout << "Tagger scaler channels not set correctly" << endl << endl;
-		return kFALSE;
-	}
+  Int_t sc1, sc2, sc3, sc4, sc5, sc6, sc7, sc8, sc9, sc10, sc11;
+  string config;
+  const char *histName;
+  string name;
 
-	return kTRUE;
+  for (Int_t i=0; i<4; i++) {
+    switch (i) {
+    case 0: name = "Tagger-Scalers";      histName = "TaggerAccScal";   break;
+    case 1: name = "SumGated-Scalers";    histName = "SumGatedScal";    break;
+    case 2: name = "SumGatedDly-Scalers"; histName = "SumGatedDlyScal"; break;
+    case 3: name = "SumOpen-Scalers";     histName = "SumOpenScal";     break;
+    }
+    
+    config = ReadConfig(name);
+    if (sscanf( config.c_str(), "%d %d %d %d %d %d %d %d %d %d %d\n", &sc1, &sc2, &sc3, &sc4, &sc5, &sc6, &sc7, &sc8, &sc9, &sc10, &sc11) == 11)
+      {
+	cout << "Setting " << name << " channels... " << endl;
+	Int_t sci, scf;
+	for (int isc=1; isc<12; isc++){
+	  switch (isc) {
+	  case 1:  sci = sc1;  break;
+	  case 2:  sci = sc2;  break;
+	  case 3:  sci = sc3;  break;
+	  case 4:  sci = sc4;  break;
+	  case 5:  sci = sc5;  break;
+	  case 6:  sci = sc6;  break;
+	  case 7:  sci = sc7;  break;
+	  case 8:  sci = sc8;  break;
+	  case 9:  sci = sc9;  break;
+	  case 10: sci = sc10; break;
+	  case 11: sci = sc11; break;
+	  }
+	  scf = sci+31;
+	  SetTC_scalers(sci, scf);
+	  AddScalerHist(histName, sci, scf);
+	  //	cout << endl;
+	}
+      }
+    else if(strcmp(config.c_str(), "nokey") != 0)
+      {
+	cout << name << " scaler channels not set correctly" << endl << endl;
+	return kFALSE;
+      }
+  }
+
+  cout << endl;
+  return kTRUE;
 
 }
+
+
+
 
 Bool_t 	PPhysics::InitLiveTimeScalers()
 {
@@ -682,11 +717,13 @@ void	PPhysics::ProcessScalerRead()
         Int_t firstBin = 1;
         for(Int_t k=0; k<nScalerSets.at(j); k++)
         {
-            FillScalers(scalerChanL.at(i),scalerChanH.at(i),(TH1*)scalerHists->At(j),firstBin);
-            firstBin += (scalerChanH.at(i)-scalerChanL.at(i)+1);
-            i++;
+	  FillScalers(scalerChanL.at(i),scalerChanH.at(i),(TH1*)scalerHists->At(j),firstBin);
+	  firstBin += (scalerChanH.at(i)-scalerChanL.at(i)+1);
+	  i++;
         }
     }
 }
+
+
 
 #endif

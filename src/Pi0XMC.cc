@@ -6,15 +6,19 @@ Pi0XMC::Pi0XMC()
   time_all             = new GH1("time_all",             "time_all",   1400, -700, 700);
   time_cut             = new GH1("time_cut",             "time_cut",   1400, -700, 700);
 
-  FPD                  = new GH1("FPD",                  "GoAT - FPD hits (p-r)",                         352, 0, 352);
-  FPD_all              = new GH1("FPD_all",              "GoAT - FPD hits all tracks (p-r)",              352, 0, 352);
+  FPD                  = new GH1("FPD",                  "GoAT - FPD hits (p-r)",                           352, 0, 352);
+  FPD_all              = new GH1("FPD_all",              "GoAT - FPD hits all tracks (p-r)",                352, 0, 352);
 
-  theta                = new GH1("theta",                "GOAT - #theta distribution",                    180, 0, 180);
-  theta_all            = new GH1("theta_all",            "GOAT - #theta distribution all tracks",         180, 0, 180);
-  thetaCM              = new GH1("thetaCM",              "GOAT - #theta CM distribution",                 180, 0, 180);
-  thetaCM_all          = new GH1("thetaCM_all",          "GOAT - #theta CM distribution all tracks",      180, 0, 180);
-  theta_MC             = new GH1("theta_MC",             "GOAT - #theta MC distribution",                 180, 0, 180);
-  thetaCM_MC           = new GH1("thetaCM_MC",           "GOAT - #theta MC CM distribution",              180, 0, 180);
+  theta                = new GH1("theta",                "GOAT - #theta distribution",                      180, 0, 180);
+  theta_all            = new GH1("theta_all",            "GOAT - #theta distribution all tracks",           180, 0, 180);
+  thetaCM              = new GH1("thetaCM",              "GOAT - #theta CM distribution",                   180, 0, 180);
+  thetaCM_all          = new GH1("thetaCM_all",          "GOAT - #theta CM distribution all tracks",        180, 0, 180);
+  Ctheta               = new GH1("Ctheta",               "GOAT - #theta distribution - cond",               180, 0, 180);
+  Ctheta_all           = new GH1("Ctheta_all",           "GOAT - #theta distribution all tracks - cond",    180, 0, 180);
+  CthetaCM             = new GH1("CthetaCM",             "GOAT - #theta CM distribution - cond",            180, 0, 180);
+  CthetaCM_all         = new GH1("CthetaCM_all",         "GOAT - #theta CM distribution all tracks - cond", 180, 0, 180);
+  theta_MC             = new GH1("theta_MC",             "GOAT - #theta MC distribution",                   180, 0, 180);
+  thetaCM_MC           = new GH1("thetaCM_MC",           "GOAT - #theta MC CM distribution",                180, 0, 180);
 
   TaggerAccScal   = new TH1D("TaggerAccScal",   "TaggerAccScal", 352, 0, 352);
 
@@ -71,6 +75,11 @@ void Pi0XMC::ProcessEvent()
     // Angular distributions
     FillTheta(*GetNeutralPions(), 0, theta, thetaCM, kTRUE);
     FillTheta(*GetNeutralPions(), theta_all, thetaCM_all, kTRUE);
+
+    if (GetNeutralPions()->GetNSubPhotons(0) == GetNeutralPions()->GetNSubParticles(0) ) {
+      FillTheta(*GetNeutralPions(), 0, Ctheta, CthetaCM, kTRUE);
+      FillTheta(*GetNeutralPions(), Ctheta_all, CthetaCM_all, kTRUE);
+    }
   }
 
   evtNum++;

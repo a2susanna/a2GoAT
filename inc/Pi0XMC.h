@@ -23,9 +23,13 @@ private:
 
     GH1*        theta;
     GH1*        theta_all;
-    GH1*        theta_MC;
     GH1*        thetaCM;
     GH1*        thetaCM_all;
+    GH1*        Ctheta;
+    GH1*        Ctheta_all;
+    GH1*        CthetaCM;
+    GH1*        CthetaCM_all;
+    GH1*        theta_MC;
     GH1*        thetaCM_MC;
 
     GH1*        FPD;

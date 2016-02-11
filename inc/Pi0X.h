@@ -64,6 +64,18 @@ private:
     GH1*        Ctheta_all;
     GH1*        Ctheta_all_hel0;
     GH1*        Ctheta_all_hel1;
+    GH1*        C2theta_hel0;
+    GH1*        C2theta_hel1;
+    GH1*        C2theta_hel0CM;
+    GH1*        C2theta_hel1CM;
+    GH1*        C2thetaCB_hel0;
+    GH1*        C2thetaCB_hel1;
+    GH1*        C2thetaCB_hel0CM;
+    GH1*        C2thetaCB_hel1CM;
+    GH1*        C2thetaTAPS_hel0;
+    GH1*        C2thetaTAPS_hel1;
+    GH1*        C2thetaTAPS_hel0CM;
+    GH1*        C2thetaTAPS_hel1CM;
 
     GH1*        FPD;
     GH1*        FPD_hel0;
@@ -75,23 +87,33 @@ private:
     GH1*        FPD_all;
     GH1*        FPD_all_hel0;
     GH1*        FPD_all_hel1;
+    GH1*        CFPD;
+    GH1*        CFPD_hel0;
+    GH1*        CFPD_hel1;
+    GH1*        CFPD_CB_hel0;
+    GH1*        CFPD_CB_hel1;
+    GH1*        CFPD_TAPS_hel0;
+    GH1*        CFPD_TAPS_hel1;
+    GH1*        C2FPD_hel0;
+    GH1*        C2FPD_CB_hel0;
+    GH1*        C2FPD_TAPS_hel0;
+    GH1*        C2FPD_hel1;
+    GH1*        C2FPD_CB_hel1;
+    GH1*        C2FPD_TAPS_hel1;
 
     GH1*	IM;
-    GH1*	IM_gg;
-    GH1*	IM_ggg;
-    GH1*	CIM_gg;
+    GH1*	CIM;
+    GH1*	C2IM;
 
     GH1*	MM;
-    GH1*	MM_gg;
-    GH1*	MM_ggg;
-    GH1*	CMM_gg;
+    GH1*	CMM;
 
     GH1*        helicity;
     GH1*        helicityZE;
     GH1*        helerrors;
     GH1*        errcode;
 
-    TH1*	TaggerAccScal;
+    //    TH1*	TaggerAccScal;
 
     string  	config;
 
