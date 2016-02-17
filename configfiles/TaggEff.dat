@@ -11,22 +11,28 @@ Add-Random-Cut: -500 -10
 Add-Random-Cut: 10 500
 
 # where are the tagger scalers?
-Tagger-Scalers: 400 751
+#Tagger-Scalers: 400 751
+Tagger-Scalers: 2864    2064    2576    2288    2000    2352    2640    2032    2320    2608    2896
 
 # where are the live time scalers?
 # first is clock, second is inhibited, third (optional) is tagger inhib
 Live-Time-Scalers: 191 190
 
-Display-Scalers: TaggerAccScal 2864 2895
-Display-Scalers: TaggerAccScal 2064 2095
-Display-Scalers: TaggerAccScal 2576 2607
-Display-Scalers: TaggerAccScal 2288 2319
-Display-Scalers: TaggerAccScal 2000 2031
-Display-Scalers: TaggerAccScal 2352 2383
-Display-Scalers: TaggerAccScal 2640 2671
-Display-Scalers: TaggerAccScal 2032 2063
-Display-Scalers: TaggerAccScal 2320 2351
-Display-Scalers: TaggerAccScal 2608 2639
-Display-Scalers: TaggerAccScal 2896 2927
+# where are the pair scalers?
+SumGated-Scalers:	2928	2160	2672	2384	2096	2448	2736	2128	2416	2704	2960
+SumGatedDly-Scalers:	2992	2256	2768	2480	2192	2544	2832	2224	2512	2800	3024
+SumOpen-Scalers:	2864    2064    2576    2288    2000    2352    2640    2032    2320    2608    2896
+
+#Display-Scalers: TaggerAccScal 2864 2895
+#Display-Scalers: TaggerAccScal 2064 2095
+#Display-Scalers: TaggerAccScal 2576 2607
+#Display-Scalers: TaggerAccScal 2288 2319
+#Display-Scalers: TaggerAccScal 2000 2031
+#Display-Scalers: TaggerAccScal 2352 2383
+#Display-Scalers: TaggerAccScal 2640 2671
+#Display-Scalers: TaggerAccScal 2032 2063
+#Display-Scalers: TaggerAccScal 2320 2351
+#Display-Scalers: TaggerAccScal 2608 2639
+#Display-Scalers: TaggerAccScal 2896 2927
 
 Display-Scalers: AllScl 0 8705
