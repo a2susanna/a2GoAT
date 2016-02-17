@@ -19,7 +19,7 @@ void TaggEffBgSub(TString sBeam, TString sBkg1, TString sBkg2="", Bool_t bFreeSc
 
   Double_t dBackClock = hBkg1LiveTime->GetBinContent(hBkg1LiveTime->GetXaxis()->FindBin("Clock"));
   Double_t dBackInhib = hBkg1LiveTime->GetBinContent(hBkg1LiveTime->GetXaxis()->FindBin("Inhibited"));
-  
+
   if(sBkg2 != ""){
     TFile fBkg2(sBkg2,"READ");
     gROOT->cd();
@@ -28,7 +28,6 @@ void TaggEffBgSub(TString sBeam, TString sBkg1, TString sBkg2="", Bool_t bFreeSc
     TH1D *hBkg2LiveTime = (TH1D*)fBkg2.Get("LiveTimeScal");
 
     hBackAccScal->Add(hBkg2AccScal);
-
     dBackClock += hBkg2LiveTime->GetBinContent(hBkg2LiveTime->GetXaxis()->FindBin("Clock"));
     dBackInhib += hBkg2LiveTime->GetBinContent(hBkg2LiveTime->GetXaxis()->FindBin("Inhibited"));
   }
@@ -103,4 +102,6 @@ void TaggEffBgSub(TString sBeam, TString sBkg1, TString sBkg2="", Bool_t bFreeSc
   
   fOut.Write();
   fOut.Close();
+
+  delete c;
 }
